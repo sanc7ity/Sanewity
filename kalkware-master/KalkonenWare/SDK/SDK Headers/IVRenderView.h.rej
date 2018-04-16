@@ -1,0 +1,344 @@
+diff a/KalkonenWare/SDK/SDK Headers/IVRenderView.h b/KalkonenWare/SDK/SDK Headers/IVRenderView.h	(rejected hunks)
+@@ -1,102 +1,102 @@
+ #pragma once
+-#include "stdafx.h"
++#include "../../stdafx.h"
+ 
+ enum PreviewImageRetVal_t
+ {
+ 	MATERIAL_PREVIEW_IMAGE_BAD = 0,
+ 	MATERIAL_PREVIEW_IMAGE_OK,
+ 	MATERIAL_NO_PREVIEW_IMAGE,
+ };
+ 
+ enum ImageFormat
+ {
+ 	IMAGE_FORMAT_UNKNOWN = -1,
+ 	IMAGE_FORMAT_RGBA8888 = 0,
+ 	IMAGE_FORMAT_ABGR8888,
+ 	IMAGE_FORMAT_RGB888,
+ 	IMAGE_FORMAT_BGR888,
+ 	IMAGE_FORMAT_RGB565,
+ 	IMAGE_FORMAT_I8,
+ 	IMAGE_FORMAT_IA88,
+ 	IMAGE_FORMAT_P8,
+ 	IMAGE_FORMAT_A8,
+ 	IMAGE_FORMAT_RGB888_BLUESCREEN,
+ 	IMAGE_FORMAT_BGR888_BLUESCREEN,
+ 	IMAGE_FORMAT_ARGB8888,
+ 	IMAGE_FORMAT_BGRA8888,
+ 	IMAGE_FORMAT_DXT1,
+ 	IMAGE_FORMAT_DXT3,
+ 	IMAGE_FORMAT_DXT5,
+ 	IMAGE_FORMAT_BGRX8888,
+ 	IMAGE_FORMAT_BGR565,
+ 	IMAGE_FORMAT_BGRX5551,
+ 	IMAGE_FORMAT_BGRA4444,
+ 	IMAGE_FORMAT_DXT1_ONEBITALPHA,
+ 	IMAGE_FORMAT_BGRA5551,
+ 	IMAGE_FORMAT_UV88,
+ 	IMAGE_FORMAT_UVWQ8888,
+ 	IMAGE_FORMAT_RGBA16161616F,
+ 	IMAGE_FORMAT_RGBA16161616,
+ 	IMAGE_FORMAT_UVLX8888,
+ 	IMAGE_FORMAT_R32F, // Single-channel 32-bit floating point
+ 	IMAGE_FORMAT_RGB323232F, // NOTE: D3D9 does not have this format
+ 	IMAGE_FORMAT_RGBA32323232F,
+ 	IMAGE_FORMAT_RG1616F,
+ 	IMAGE_FORMAT_RG3232F,
+ 	IMAGE_FORMAT_RGBX8888,
+ 
+ 	IMAGE_FORMAT_NULL, // Dummy format which takes no video memory
+ 
+ 	// Compressed normal map formats
+ 	IMAGE_FORMAT_ATI2N, // One-surface ATI2N / DXN format
+ 	IMAGE_FORMAT_ATI1N, // Two-surface ATI1N format
+ 
+ 	IMAGE_FORMAT_RGBA1010102, // 10 bit-per component render targets
+ 	IMAGE_FORMAT_BGRA1010102,
+ 	IMAGE_FORMAT_R16F, // 16 bit FP format
+ 
+ 	// Depth-stencil texture formats
+ 	IMAGE_FORMAT_D16,
+ 	IMAGE_FORMAT_D15S1,
+ 	IMAGE_FORMAT_D32,
+ 	IMAGE_FORMAT_D24S8,
+ 	IMAGE_FORMAT_LINEAR_D24S8,
+ 	IMAGE_FORMAT_D24X8,
+ 	IMAGE_FORMAT_D24X4S4,
+ 	IMAGE_FORMAT_D24FS8,
+ 	IMAGE_FORMAT_D16_SHADOW, // Specific formats for shadow mapping
+ 	IMAGE_FORMAT_D24X8_SHADOW, // Specific formats for shadow mapping
+ 
+ 	// supporting these specific formats as non-tiled for procedural cpu access (360-specific)
+ 	IMAGE_FORMAT_LINEAR_BGRX8888,
+ 	IMAGE_FORMAT_LINEAR_RGBA8888,
+ 	IMAGE_FORMAT_LINEAR_ABGR8888,
+ 	IMAGE_FORMAT_LINEAR_ARGB8888,
+ 	IMAGE_FORMAT_LINEAR_BGRA8888,
+ 	IMAGE_FORMAT_LINEAR_RGB888,
+ 	IMAGE_FORMAT_LINEAR_BGR888,
+ 	IMAGE_FORMAT_LINEAR_BGRX5551,
+ 	IMAGE_FORMAT_LINEAR_I8,
+ 	IMAGE_FORMAT_LINEAR_RGBA16161616,
+ 
+ 	IMAGE_FORMAT_LE_BGRX8888,
+ 	IMAGE_FORMAT_LE_BGRA8888,
+ 
+ 	NUM_IMAGE_FORMATS
+ };
+ 
+ enum MaterialVarType_t
+ {
+ 	MATERIAL_VAR_TYPE_FLOAT = 0,
+ 	MATERIAL_VAR_TYPE_STRING,
+ 	MATERIAL_VAR_TYPE_VECTOR,
+ 	MATERIAL_VAR_TYPE_TEXTURE,
+ 	MATERIAL_VAR_TYPE_INT,
+ 	MATERIAL_VAR_TYPE_FOURCC,
+ 	MATERIAL_VAR_TYPE_UNDEFINED,
+ 	MATERIAL_VAR_TYPE_MATRIX,
+ 	MATERIAL_VAR_TYPE_MATERIAL,
+ };
+ 
+ class CUtlSymbol
+ {
+@@ -1246,237 +1246,133 @@
+ 
+ 	// Sets up the projection matrix for the specified field of view
+ 	virtual void OLD_SetProjectionMatrix( float fov, float zNear, float zFar ) = 0;
+ 
+ 	// Determine lighting at specified position
+ 	virtual colorVec GetLightAtPoint( Vector& pos ) = 0;
+ 
+ 	// Whose eyes are we looking through?
+ 	virtual int GetViewEntity( void ) = 0;
+ 
+ 	virtual bool IsViewEntity( int entindex ) = 0;
+ 
+ 	// Get engine field of view setting
+ 	virtual float GetFieldOfView( void ) = 0;
+ 
+ 	// 1 == ducking, 0 == not
+ 	virtual unsigned char** GetAreaBits( void ) = 0;
+ 
+ 	// Set up fog for a particular leaf
+ 	virtual void SetFogVolumeState( int nVisibleFogVolume, bool bUseHeightFog ) = 0;
+ 
+ 	// Installs a brush surface draw override method, null means use normal renderer
+ 	virtual void InstallBrushSurfaceRenderer( IBrushRenderer* pBrushRenderer ) = 0;
+ 
+ 	// Draw brush model shadow
+ 	virtual void DrawBrushModelShadow( IClientRenderable* pRenderable ) = 0;
+ 
+ 	// Does the leaf contain translucent surfaces?
+ 	virtual bool LeafContainsTranslucentSurfaces( IWorldRenderList* pList, int sortIndex, unsigned long flags ) = 0;
+ 
+ 	virtual bool DoesBoxIntersectWaterVolume( const Vector& mins, const Vector& maxs, int leafWaterDataID ) = 0;
+ 
+ 	virtual void SetAreaState( unsigned char chAreaBits[MAX_AREA_STATE_BYTES], unsigned char chAreaPortalBits[MAX_AREA_PORTAL_STATE_BYTES] ) = 0;
+ 
+ 	// See i
+ 	virtual void VGui_Paint( int mode ) = 0;
+ 
+ 	// Push, pop views (see PushViewFlags_t above for flags)
+ 	virtual void Push3DView( const CViewSetup& view, int nFlags, void* pRenderTarget, Frustum frustumPlanes ) = 0;
+ 
+ 	virtual void Push2DView( const CViewSetup& view, int nFlags, void* pRenderTarget, Frustum frustumPlanes ) = 0;
+ 
+ 	virtual void PopView( Frustum frustumPlanes ) = 0;
+ 
+ 	// Sets the main view
+ 	virtual void SetMainView( const Vector& vecOrigin, const Vector& angles ) = 0;
+ 
+ 	enum
+ 	{
+ 		VIEW_SETUP_VIS_EX_RETURN_FLAGS_USES_RADIAL_VIS = 0x00000001
+ 	};
+ 
+ 	// Wraps view render sequence, sets up a view
+ 	virtual void ViewSetupVisEx( bool novis, int numorigins, const Vector origin[], unsigned int& returnFlags ) = 0;
+ 
+ 	//replaces the current view frustum with a rhyming replacement of your choice
+ 	virtual void OverrideViewFrustum( Frustum custom ) = 0;
+ 
+ 	virtual void DrawBrushModelShadowDepth( IClientEntity* baseentity, model_t* model, const Vector& origin, const Vector& angles, bool bSort ) = 0;
+ 
+ 	virtual void UpdateBrushModelLightmap( model_t* model, IClientRenderable* pRenderable ) = 0;
+ 
+ 	virtual void BeginUpdateLightmaps( void ) = 0;
+ 
+ 	virtual void EndUpdateLightmaps( void ) = 0;
+ 
+ 	virtual void OLD_SetOffCenterProjectionMatrix( float fov, float zNear, float zFar, float flAspectRatio, float flBottom, float flTop, float flLeft, float flRight ) = 0;
+ 
+ 	virtual void OLD_SetProjectionMatrixOrtho( float left, float top, float right, float bottom, float zNear, float zFar ) = 0;
+ 
+ 	virtual void Push3DView( const CViewSetup& view, int nFlags, void* pRenderTarget, Frustum frustumPlanes, void* pDepthTexture ) = 0;
+ 
+ 	virtual void GetMatricesForView( const CViewSetup& view, VMatrix* pWorldToView, VMatrix* pViewToProjection, VMatrix* pWorldToProjection, VMatrix* pWorldToPixels ) = 0;
+ };
+ 
+ enum ClearFlags_t
+ {
+ 	VIEW_CLEAR_COLOR = 0x1,
+ 	VIEW_CLEAR_DEPTH = 0x2,
+ 	VIEW_CLEAR_FULL_TARGET = 0x4,
+ 	VIEW_NO_DRAW = 0x8,
+ 	VIEW_CLEAR_OBEY_STENCIL = 0x10, // Draws a quad allowing stencil test to clear through portals
+ 	VIEW_CLEAR_STENCIL = 0x20,
+ };
+ 
+ enum StereoEye_t
+ {
+ 	STEREO_EYE_MONO = 0,
+ 	STEREO_EYE_LEFT = 1,
+ 	STEREO_EYE_RIGHT = 2,
+ 	STEREO_EYE_MAX = 3,
+ };
+ 
+ enum MotionBlurMode_t
+ {
+ 	MOTION_BLUR_DISABLE = 1,
+ 	MOTION_BLUR_GAME = 2, // Game uses real-time inter-frame data
+ 	MOTION_BLUR_SFM = 3 // Use SFM data passed in CViewSetup structure
+ };
+ 
+-class CViewSetup
+-{
+-public:
+-	CViewSetup()
+-	{
+-		m_flAspectRatio = 0.0f;
+-		// These match mat_dof convars
+-		m_flNearBlurDepth = 20.0;
+-		m_flNearFocusDepth = 100.0;
+-		m_flFarFocusDepth = 250.0;
+-		m_flFarBlurDepth = 1000.0;
+-		m_flNearBlurRadius = 10.0;
+-		m_flFarBlurRadius = 5.0;
+-		m_nDoFQuality = 0;
+-		m_bCustoClientVarsiewMatrix = false;
+-
+-		//m_bRenderToSubrectOfLargerScreen = false;
+-		//m_bDoBloomAndToneMapping = true;
+-		//m_nMotionBlurMode = MOTION_BLUR_GAME;
+-		//m_bDoDepthOfField = false;
+-		//m_bHDRTarget = false;
+-		//m_bOffCenter = false;
+-		//m_bCacheFullSceneState = false;
+-		//m_bDrawWorldNormal = false;
+-		//m_bCullFrontFaces = false;
+-		//		//m_bUseExplicitViewVector = false;
+-		//m_bRenderFlashlightDepthTranslucents = false;
+-	}
+-
+-	// left side of view window
+-	int x, x_old;
+-	// top side of view window
+-	int y, y_old;
+-	// width of view window
+-	int width, width_old;
+-	// height of view window
+-	int height, height_old;
+-	// the rest are only used by 3D views
+-	// Orthographic projection?
+-	bool m_bOrtho;
+-	// View-space rectangle for ortho projection.
+-	float m_OrthoLeft;
+-	float m_OrthoTop;
+-	float m_OrthoRight;
+-	float m_OrthoBottom;
+-	bool m_bCustoClientVarsiewMatrix; // 0x34
+-	matrix3x4 m_matCustoClientVarsiewMatrix; // 0x38
+-	char pad_0x68[0x48]; // 0x68
+-	// horizontal FOV in degrees
+-	float fov; //	0xB0
+-	// horizontal FOV in degrees for in-view model
+-	float fovViewmodel;
+-	// 3D origin of camera
+-	Vector origin;
+-	// heading of camera (pitch, yaw, roll)
+-	Vector angles;
+-	// local Z coordinate of near plane of camera
+-	float zNear;
+-	// local Z coordinate of far plane of camera
+-	float zFar;
+-	// local Z coordinate of near plane of camera ( when rendering view model )
+-	float zNearViewmodel;
+-	// local Z coordinate of far plane of camera ( when rendering view model )
+-	float zFarViewmodel;
+-	// The aspect ratio to use for computing the perspective projection matrix
+-	// (0.0f means use the viewport)
+-	float m_flAspectRatio;
+-	// Camera settings to control depth of field
+-	float m_flNearBlurDepth;
+-	float m_flNearFocusDepth;
+-	float m_flFarFocusDepth;
+-	float m_flFarBlurDepth;
+-	float m_flNearBlurRadius;
+-	float m_flFarBlurRadius;
+-	int m_nDoFQuality;
+-	// Camera settings to control motion blur
+-	MotionBlurMode_t m_nMotionBlurMode;
+-	float m_flShutterTime; // In seconds
+-	Vector m_vShutterOpenPosition; // Start of frame or "shutter open"
+-	Vector m_shutterOpenAngles; //
+-	Vector m_vShutterClosePosition; // End of frame or "shutter close"
+-	Vector m_shutterCloseAngles; // 
+-	// Controls for off-center projection (needed for poster rendering)
+-	float m_flOffCenterTop;
+-	float m_flOffCenterBottom;
+-	float m_flOffCenterLeft;
+-	float m_flOffCenterRight;
+-	int m_EdgeBlur; // 0x148
+-	//end
+-	//bool		m_bOffCenter:1;
+-	//// set to true if this is to draw into a subrect of the larger screen
+-	//// this really is a hack, but no more than the rest of the way this class is used
+-	//bool		m_bRenderToSubrectOfLargerScreen:1;
+-	//// Controls that the SFM needs to tell the engine when to do certain post-processing steps
+-	//bool		m_bDoBloomAndToneMapping:1;
+-	//bool		m_bDoDepthOfField:1;
+-	//bool		m_bHDRTarget:1;
+-	//bool		m_bDrawWorldNormal:1;
+-	//bool		m_bCullFrontFaces:1;
+-	//// Cached mode for certain full-scene per-frame varying state such as sun entity coverage
+-	//bool		m_bCacheFullSceneState:1;
+-	//bool		m_bRenderFlashlightDepthTranslucents:1;
+-}; // size = 0x14C = 332
+-
+ struct SpatializationInfo_t;
+ 
+ class IClientEntity : public IClientUnknown, public IClientRenderable, public IClientNetworkable
+ {
+ public:
+ 	virtual void             Release(void) = 0;
+ 	virtual const Vector3    GetAbsOrigin(void) const = 0;
+ 	virtual const Vector3    GetAbsAngles(void) const = 0;
+ 	virtual void*            GetMouth(void) = 0;
+ 	virtual bool             GetSoundSpatialization(SpatializationInfo_t info) = 0;
+ 	virtual bool             IsBlurred(void) = 0;
+ 
+ 	void SetModelIndexVirtual(int index)
+ 	{
+ 		typedef void(__thiscall* SetModelIndexFn)(void*, int);
+ 		getvfunc<SetModelIndexFn>(this, 75)(this, index);
+ 	}
+ 
+ 	int GetModelIndex()
+ 	{
+ 		return *(int*)((DWORD)this + 0x254);
+ 	}
+ 
+ 	void SetModelIndex(int index)
+ 	{
+ 		*(reinterpret_cast<int*>(uintptr_t(this) + 0x254)) = index;
+ 	}
+ 
+ 	Vector3 GetOrigin()
+ 	{
+ 		return *(Vector3*)((DWORD)this + 0x134);
+ 	}
+ };
+\ No newline at end of file
