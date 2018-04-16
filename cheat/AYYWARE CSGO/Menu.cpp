@@ -82,7 +82,7 @@ void AvozWindow::Setup()
 {
 	SetPosition(350, 50);
 	SetSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-	SetTitle("                                                                       AVOZ");
+	SetTitle("cheat");
 
 	RegisterTab(&RageBotTab);
 	RegisterTab(&LegitBotTab);
