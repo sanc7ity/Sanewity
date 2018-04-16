@@ -1,0 +1,5 @@
+﻿E:\Visual Studio\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(373,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
+  DLLMain.cpp
+  Hooks.cpp
+     Creating library ..\..\AVOZ.lib and object ..\..\AVOZ.exp
+  AYYWARE CSGO.vcxproj -> E:\sanewity\Sanewity\cheat\AYYWARE CSGO\..\..\AVOZ.dll

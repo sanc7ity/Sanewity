@@ -15,7 +15,8 @@
 
 #include "Dumping.h"
 
-#define ExampleHWID 166165151
+#define Sanctity 1224561781
+#define Newtzz -656430358
 
 
 extern HINSTANCE hAppInstance;
@@ -78,7 +79,8 @@ BOOL WINAPI DllMain(HMODULE hModule, DWORD dwReason, LPVOID lpReserved)
 	{
 		GetVolumeInformation(szHD, (LPTSTR)szVolNameBuff, 255, &dwSerial, &dwMFL, &dwSysFlags, (LPTSTR)szFileSys, 255);
 
-		if (dwSerial == ExampleHWID)
+		if (dwSerial == Sanctity ||
+			dwSerial == Newtzz)
 		{
 			Sleep(100);
 		}

@@ -9,6 +9,8 @@
 #include "CRC32.h"
 #include "Resolver.h"
 #include "hitmarker.h"
+#include <stdio.h>  
+#include <intrin.h> 
 
 #define MakePtr(cast, ptr, addValue) (cast)( (DWORD)(ptr) + (DWORD)(addValue))
 
