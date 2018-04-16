@@ -1,5 +1,34 @@
-﻿E:\Visual Studio\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(373,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(373,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
+  AntiAntiAim.cpp
+  Autowall.cpp
+  Chams.cpp
+  Controls.cpp
+  CRC32.cpp
   DLLMain.cpp
+  Dumping.cpp
+  ESP.cpp
+  GUI.cpp
+  Hacks.cpp
   Hooks.cpp
-     Creating library ..\..\AVOZ.lib and object ..\..\AVOZ.exp
-  AYYWARE CSGO.vcxproj -> E:\sanewity\Sanewity\cheat\AYYWARE CSGO\..\..\AVOZ.dll
+  ReflectiveLoader.cpp
+  Interfaces.cpp
+  LegitBot.cpp
+  MathFunctions.cpp
+  Menu.cpp
+  MetaInfo.cpp
+  MiscHacks.cpp
+  NetVarManager.cpp
+  NetVars.cpp
+  Offsets.cpp
+  RageBot.cpp
+  RenderManager.cpp
+  Resolver.cpp
+  SpoofedConvar.cpp
+  tinyxml2.cpp
+  UTIL Functions.cpp
+  Utilities.cpp
+  Visual.cpp
+  Window.cpp
+     Creating library ..\..\..\..\..\inyect\sanewity.lib and object ..\..\..\..\..\inyect\sanewity.exp
+  AYYWARE CSGO.vcxproj -> C:\Users\helix\Desktop\bot\Auth\Sanewity\cheat\AYYWARE CSGO\..\..\..\..\..\inyect\sanewity.dll
+  AYYWARE CSGO.vcxproj -> ..\..\..\..\..\inyect\sanewity.pdb (Full PDB)
