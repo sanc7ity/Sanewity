@@ -120,7 +120,7 @@ void AvozWindow::Setup()
 
 void CRageBotTab::Setup()
 {
-	SetTitle("a");
+	SetTitle("rage");
 
 	ActiveLabel.SetPosition(16, -15);
 	ActiveLabel.SetText("Active");
@@ -354,7 +354,7 @@ void CRageBotTab::Setup()
 
 void CLegitBotTab::Setup()
 {
-	SetTitle("b");
+	SetTitle("legit");
 
 	ActiveLabel.SetPosition(16, -15);
 	ActiveLabel.SetText("Active");
@@ -648,7 +648,7 @@ void CLegitBotTab::Setup()
 
 void CVisualTab::Setup()
 {
-	SetTitle("c");
+	SetTitle("visuals");
 
 	ActiveLabel.SetPosition(16, -15);
 	ActiveLabel.SetText("Active");
@@ -866,7 +866,7 @@ void CVisualTab::Setup()
 
 void CMiscTab::Setup()
 {
-	SetTitle("f");
+	SetTitle("misc");
 
 
 #pragma region Other
@@ -993,7 +993,7 @@ void CMiscTab::Setup()
 
 void CColorTab::Setup()
 {
-	SetTitle("d");
+	SetTitle("colors");
 #pragma region Visual Colors
 	ColorsGroup.SetPosition(16, -15);
 	ColorsGroup.SetText("Colors");
@@ -1176,7 +1176,7 @@ void CColorTab::Setup()
 
 void CSkinchangerTab::Setup()
 {
-	SetTitle("e");
+	SetTitle("skin");
 
 	SkinActive.SetPosition(16, -15);
 	SkinActive.SetText("Active");
